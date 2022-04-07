@@ -1,7 +1,13 @@
-<div class="d-flex justify-content-around position-fixed w-100 bottom-0 bg-light bg-gradient border-top py-3">
-  <fa-icon [icon]="faHome"></fa-icon>
-  <fa-icon [icon]="faCalendarDays"></fa-icon>
-  <fa-icon [icon]="faUser"></fa-icon>
-  <fa-icon [icon]="faClock"></fa-icon>
-  <fa-icon [icon]="faGear"></fa-icon>
+<div class="navbar navbar-expand-lg px-2 mt-4">
+  <div class="container-fluid">
+    <div>
+      <h1 class="m-0">{{selectedMonth}} <span class="theme-color">{{selectedYear}}</span></h1>
+    </div>
+    <ul class="navbar-nav flex-row navLinks">
+      <li *ngFor="let icon of navIcons" class="nav-item">
+        <fa-icon [icon]=icon [styles]="{'color': '#FF7D50'}" size="lg"></fa-icon>
+      </li>
+    </ul>
+  </div>
 </div>
+

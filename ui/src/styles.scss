@@ -5,3 +5,10 @@
 
 /* Importing Datepicker SCSS file. */
 @import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
+
+// $theme_salmon: #FEB498;
+$theme_orange: #FF7D50;
+
+.theme-color {
+  color: $theme_orange;
+}
