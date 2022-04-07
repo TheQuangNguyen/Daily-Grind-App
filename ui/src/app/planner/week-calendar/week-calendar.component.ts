@@ -1,28 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { getDay } from 'date-fns';
+import { CalendarService } from '../../_services/calendar.service'
 
 @Component({
   selector: 'app-week-calendar',
   templateUrl: './week-calendar.component.html',
   styleUrls: ['./week-calendar.component.scss']
 })
-export class WeekCalendarComponent implements OnInit {
-  daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  
-  selectedDay = 0;
+export class WeekCalendarComponent implements OnInit, OnDestroy {
+  // CSS styles
+  spacing = "d-flex justify-content-around";
 
+  daysOfWeek: readonly string[] = this.calendarService.daysOfWeek;
+  daysInWeek: number[] = [];
+  selectedDayInWeek = 0;   // 0 = Sunday, 6 = Saturday
 
-  constructor() {
-    let today = new Date();
-    if (!this.selectedDay) {
-      this.selectedDay = getDay(today);
-    }
-  }
+  constructor(private calendarService: CalendarService) {}
 
   ngOnInit(): void {
-
+    this.calendarService.selectedDateSubject.subscribe((date: Date) => {
+      this.selectedDayInWeek = getDay(date);
+      this.daysInWeek = this.calendarService.getDaysInWeek(date);
+    });
   }
 
+  ngOnDestroy(): void {
+    this.calendarService.selectedDateSubject.unsubscribe();
+  }
 }
 
 

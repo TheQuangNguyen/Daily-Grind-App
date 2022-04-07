@@ -1,8 +1,6 @@
-<div class="d-flex flex-column justify-content-around">
-  <div class="d-flex justify-content-around">
-    <p *ngFor="let day of daysOfWeek">{{day}}</p>
-  </div>
-  <div class="d-flex justify-content-around">
-    <a></a>
+<div class="d-flex justify-content-around week-calendar">
+  <div *ngFor="let day of daysOfWeek; let i = index" class="d-flex flex-column justify-content-center align-items-center">
+    <small class="text-white-50">{{day}}</small>
+    <a class="text-decoration-none text-light my-2">{{daysInWeek[i]}}</a>
   </div>
 </div>
